@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import GetGeolocation from './GetGeolocation'
 const request = require('superagent')
 
 export default class Form extends Component {
@@ -6,13 +7,13 @@ export default class Form extends Component {
     super(props)
     this.state = {
       status: '',
-      msg: '',
+      taskMsg: '',
       imgUrl: null,
       imgFile: null
     }
   }
 
-  handleChangeFile (e) {
+  handleChangeImgFile (e) {
     const URL = (window.URL || window.webkitURL)
     const createObjectURL = URL.createObjectURL
     const files = e.target.files
@@ -25,15 +26,14 @@ export default class Form extends Component {
   }
 
   handleChangeText (e) {
-    this.setState({ msg: e.target.value })
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit (e) {
     e.preventDefault()
-    if (!this.state.imgFile || !this.state.msg) return this.setState({ state: '*必須項目を埋めてください*' })
     request
       .post('/api/upload')
-      .field('msg', this.state.msg)
+      .field('msg', this.state.taskMsg)
       .attach('aImage', this.state.imgFile)
       .end((err, res) => {
         if (err) return console.error(err)
@@ -42,19 +42,38 @@ export default class Form extends Component {
       })
   }
 
+  getLocation (e) {
+    console.log(e)
+  }
+
+  createPreview () {
+    if (this.state.imgUrl) {
+      return (
+        <figure><img src={this.state.imgUrl} id='task-id' width='300px' /></figure>
+      )
+    }
+    return null
+  }
+
   render () {
-    const imgSelected = this.state.imgUrl === null ? null : <img src={this.state.imgUrl} height='300px' />
+    const imgPicked = this.createPreview()
+    const taskPlaceholder = '例: 道路に木が倒れていて危険な状態です。'
+    console.log(this.img)
     return (
       <div>
         <h1>投稿</h1>
-        <p>{this.state.state}</p>
-        <form method='POST' action='/api/upload' encType='multipart/form-data' >
-          <p><input type='file' name='aImage' onChange={e => this.handleChangeFile(e)} />*必須</p>
-          <p><input type='text' name='msg' placeholder='メッセージ' value={this.state.msg} onChange={e => this.handleChangeText(e)} />*必須</p>
+        <form>
+          <p><input type='file' name='aImage'
+            onChange={e => this.handleChangeImgFile(e)}
+          /></p>
+          <p><textarea type='text' name='taskMsg'
+            placeholder={taskPlaceholder} value={this.state.msg} onChange={e => this.handleChangeText(e)}
+          /></p>
           <p><button onClick={e => this.handleSubmit(e)}>投稿</button></p>
+          <GetGeolocation onClick={e => this.getLocation(e)} imageID={'task-id'} />
         </form>
 
-        <figure>{imgSelected}</figure>
+        {imgPicked}
       </div>
     )
   }
