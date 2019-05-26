@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import GetGeolocation from './GetGeolocation'
+import LeafMap from './LeafMap'
 const request = require('superagent')
 
 export default class Form extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      location: null,
       status: '',
       taskMsg: '',
       imgUrl: null,
@@ -30,10 +32,12 @@ export default class Form extends Component {
   }
 
   handleSubmit (e) {
+    const location = this.state.location ? JSON.stringify(this.state.location) : ''
     e.preventDefault()
     request
       .post('/api/upload')
       .field('msg', this.state.taskMsg)
+      .field('location', location)
       .attach('aImage', this.state.imgFile)
       .end((err, res) => {
         if (err) return console.error(err)
@@ -43,10 +47,15 @@ export default class Form extends Component {
   }
 
   getLocation (e) {
-    console.log(e)
+    this.setState({
+      location: {
+        lat: e.lat,
+        lon: e.lon
+      }
+    })
   }
 
-  createPreview () {
+  createPreviewImage () {
     if (this.state.imgUrl) {
       return (
         <figure><img src={this.state.imgUrl} id='task-id' width='300px' /></figure>
@@ -56,12 +65,12 @@ export default class Form extends Component {
   }
 
   render () {
-    const imgPicked = this.createPreview()
+    const imgPicked = this.createPreviewImage()
     const taskPlaceholder = '例: 道路に木が倒れていて危険な状態です。'
-    console.log(this.img)
     return (
-      <div>
+      <div className='form-component'>
         <h1>投稿</h1>
+        {imgPicked}
         <form>
           <p><input type='file' name='aImage'
             onChange={e => this.handleChangeImgFile(e)}
@@ -72,8 +81,8 @@ export default class Form extends Component {
           <p><button onClick={e => this.handleSubmit(e)}>投稿</button></p>
           <GetGeolocation onClick={e => this.getLocation(e)} imageID={'task-id'} />
         </form>
+        <LeafMap location={this.state.location} />
 
-        {imgPicked}
       </div>
     )
   }

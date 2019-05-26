@@ -18,5 +18,5 @@ app.use('/', express.static('./public/'))
 app.post('/api/upload', upload.any(), (req, res) => {
   console.log(req.files)
   console.log(req.body)
-  res.json({ status: true })
+  res.json(req.body)
 })
