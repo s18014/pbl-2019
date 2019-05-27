@@ -7,9 +7,10 @@ export default class Form extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      location: null,
       status: '',
       taskMsg: '',
+      locationMsg: '',
+      location: null,
       imgUrl: null,
       imgFile: null
     }
@@ -36,13 +37,14 @@ export default class Form extends Component {
     e.preventDefault()
     request
       .post('/api/upload')
-      .field('msg', this.state.taskMsg)
+      .field('taskMsg', this.state.taskMsg)
+      .field('locationMsg', this.state.locationMsg)
       .field('location', location)
       .attach('aImage', this.state.imgFile)
       .end((err, res) => {
         if (err) return console.error(err)
         console.log(res)
-        this.setState({ state: '投稿しました' })
+        this.setState({ status: '投稿しました' })
       })
   }
 
@@ -65,8 +67,10 @@ export default class Form extends Component {
   }
 
   render () {
+    const status = this.state.status ? <p>{this.state.status}</p> : null
     const imgPicked = this.createPreviewImage()
     const taskPlaceholder = '例: 道路に木が倒れていて危険な状態です。'
+    const locationPlaceholder = '例: 那覇市樋川 ITカレッジ沖縄前の交差手点'
     return (
       <div className='form-component'>
         <h1>投稿</h1>
@@ -76,12 +80,17 @@ export default class Form extends Component {
             onChange={e => this.handleChangeImgFile(e)}
           /></p>
           <p><textarea type='text' name='taskMsg'
-            placeholder={taskPlaceholder} value={this.state.msg} onChange={e => this.handleChangeText(e)}
+            placeholder={taskPlaceholder} value={this.state.taskMsg} onChange={e => this.handleChangeText(e)}
           /></p>
-          <p><button onClick={e => this.handleSubmit(e)}>投稿</button></p>
+          <p><input type='text' name='locationMsg'
+            placeholder={locationPlaceholder} value={this.state.locationMsg} onChange={e => this.handleChangeText(e)}
+          /></p>
+
           <GetGeolocation onClick={e => this.getLocation(e)} imageID={'task-id'} />
         </form>
         <LeafMap location={this.state.location} />
+        <p><button onClick={e => this.handleSubmit(e)}>投稿</button></p>
+        { status }
 
       </div>
     )

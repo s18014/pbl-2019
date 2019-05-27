@@ -12,13 +12,16 @@ export default class GetGeolocation extends Component {
   getGeolocationWithBrowser (e) {
     e.preventDefault()
     navigator.geolocation.getCurrentPosition((pos) => {
-      const obj = {
+      const location = {
         lat: pos.coords.latitude,
         lon: pos.coords.longitude
       }
       if (this.props.onClick) {
-        this.props.onClick(obj)
+        this.props.onClick(location)
       }
+      this.setState({
+        status: '位置情報を取得しました'
+      })
     })
   }
 
@@ -42,8 +45,8 @@ export default class GetGeolocation extends Component {
   render () {
     return (
       <div className='get-geolocation-component'>
-        <p>{this.state.status}</p>
         <p>位置情報を取得する</p>
+        <p>{this.state.status}</p>
         <button onClick={e => this.getGeolocationWithBrowser(e)}>端末から取得</button>
         <button onClick={e => this.getGeolocationWithImage(e)}>画像から取得</button>
       </div>
