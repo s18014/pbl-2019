@@ -20,3 +20,16 @@ app.post('/api/upload', upload.any(), (req, res) => {
   console.log(req.body)
   res.json(req.body)
 })
+
+app.get('/api/getTasks', (req, res) => {
+  const dummyData = {
+    imagePath: '',
+    taskMsg: '変質者がいました',
+    locationMsg: '那覇市の平和通り',
+    location: {
+      lat: 26.214,
+      lon: 127.686
+    }
+  }
+  res.json(dummyData)
+})
