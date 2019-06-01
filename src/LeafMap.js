@@ -17,12 +17,14 @@ export default class LeafMap extends Component {
 
   createMap () {
     if (!this.state.location) return null
+    const url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+    const attribution = '<a href="http://osm.org/copyright">OpenStreetMap</a>'
     const position = this.state.location
     return (
       <Map center={position} zoom={15}>
         <TileLayer
-          attribution='<a href="https://maps.gsi.go.jp">地理院地図</a>'
-          url='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
+          attribution={attribution}
+          url={url}
         />
         <Marker position={position}>
           <Popup>
