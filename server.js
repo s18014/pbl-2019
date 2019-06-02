@@ -2,6 +2,7 @@ const multer = require('multer')
 const bodyParser = require('body-parser')
 const path = require('path')
 const express = require('express')
+const history = require('connect-history-api-fallback')
 
 const app = express()
 const tmpDir = path.join(__dirname, 'tmp')
@@ -13,6 +14,7 @@ app.listen(portNo, () => {
 })
 
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(history())
 app.use('/', express.static('./public/'))
 
 app.post('/api/upload', upload.any(), (req, res) => {

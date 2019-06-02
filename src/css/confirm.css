@@ -1,0 +1,22 @@
+#confirm-page .confirm {
+  text-align: center;
+  background-color: red;
+}
+
+#confirm-page .confirm-container {
+  display: inline-block;
+  border: 3px dotted;
+  max-width: 600px;
+}
+
+#confirm-page .confirm figure {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid;
+  max-width: 400px;
+}
+
+#confirm-page .confirm img {
+  max-width: 400px;
+  vertical-align: middle;
+}

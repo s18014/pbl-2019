@@ -44,11 +44,19 @@ export default class GetGeolocation extends Component {
 
   render () {
     return (
-      <div className='get-geolocation-component'>
-        <p>位置情報を取得する</p>
-        <p>{this.state.status}</p>
-        <button onClick={e => this.getGeolocationWithBrowser(e)}>端末から取得</button>
-        <button onClick={e => this.getGeolocationWithImage(e)}>画像から取得</button>
+      <div className='input-area'>
+        <div className='input-button'>
+          {this.state.status}
+          <label>
+              端末から取得
+            <button onClick={e => this.getGeolocationWithBrowser(e)} />
+          </label>
+
+          <label>
+              画像から取得
+            <button onClick={e => this.getGeolocationWithImage(e)} />
+          </label>
+        </div>
       </div>
     )
   }
