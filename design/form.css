@@ -1,0 +1,156 @@
+#form-page p {
+  margin: 0;
+}
+
+#form-page .form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#form-page .input-boxes {
+  display: flex;
+  flex-flow: column;
+}
+
+#form-page .input-box {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 3px;
+}
+
+/* input-box内の要素 */
+#form-page .title, #form-page .input-area, #form-page .preview {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#form-page .title {
+  display: flex;
+  flex: 0 0 150px;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  border-right: none;
+}
+
+
+#form-page .input-area {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+#form-page .preview {
+  flex: 0 0 400px;
+  height: 200px;
+  border-left: none;
+}
+
+#form-page .input-area input, #form-page .input-area textarea {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#form-page .input-area textarea {
+  resize: none;
+  height: 80px;
+  padding: 5px;
+}
+
+/* titleの要素 */
+#form-page .title .require {
+  font-size: 8px;
+  color: red;
+}
+
+/* 選択ボタン */
+#form-page .input-button {
+  display: flex;
+  flex-flow: column;
+}
+
+#form-page .input-button label {
+  display: inline-block;
+  background-color: #666ab8;
+  text-align: center;
+  color: #fff;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+#form-page .input-button label:hover {
+  background-color: #888fff;
+}
+
+#form-page .input-button input, #form-page .input-button button {
+  display: none;
+}
+
+/* 画像のプレビュー */
+#form-page .preview figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+#form-page .input-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* 確認画面ボタン */
+#form-page .confirm-button {
+  margin-top: 10px;
+  padding: 0 30px;
+  text-align: center;
+}
+
+#form-page .confirm-button label {
+  display: inline-block;
+  background-color: #666ab8;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  border-radius: 3px;
+  color: #fff;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#form-page .confirm-button label:hover {
+  background-color: #888fff;
+}
+
+#form-page .confirm-button button {
+  display: none;
+}
+
+
+/* 768px以下 */
+@media only screen and (max-width: 768px) {
+  #form-page .input-container {
+    width: 100%;
+  }
+
+  #form-page .title {
+    flex: 0 0 30px;
+    border-right: 1px solid #ccc;
+    border-bottom: none;
+  }
+
+  #form-page .input-box {
+    flex-flow: column;
+  }
+
+  #form-page .preview {
+    flex: 0 0 auto;
+    border-left: 1px solid #ccc;
+    border-top: none;
+  }
+}

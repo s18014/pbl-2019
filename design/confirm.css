@@ -1,0 +1,98 @@
+#confirmation-page .confirmation-page-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#confirmation-page .boxes {
+  display: flex;
+  flex-flow: column;
+}
+
+#confirmation-page .box {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  margin-bottom: 3px;
+}
+
+/* box内の大まかな設定 */
+#confirmation-page .box-title, #confirmation-page .box-content {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#confirmation-page .box-title {
+  display: flex;
+  flex: 0 0 150px;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+}
+
+#confirmation-page .box-content {
+  flex: 1 1 auto;
+}
+
+/* image-item */
+#confirmation-page .image-item figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+#confirmation-page .image-item img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* text-item */
+#confirmation-page .text-item textarea {
+  resize: none;
+  box-sizing: border-box;
+  width: 100%;
+  height: 80px;
+  padding: 5px;
+}
+
+/* map-item */
+#confirmation-page .map-item {
+  height: 200px;
+}
+
+/* 投稿ボタン */
+#confirmation-page .push-button {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#confirmation-page .push-button button {
+  display: none;
+}
+
+#confirmation-page .push-button label {
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: #666ab8;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 10px;
+  width: 200px;
+  height: 100%;
+}
+
+#confirmation-page .push-button label:hover {
+  background-color: #888fff;
+}
+
+/* 768px以下 */
+@media only screen and (max-width: 768px) {
+  #confirmation-page .box {
+    flex-flow: column;
+  }
+
+  #confirmation-page .box-title {
+    flex: 0 0 30px;
+  }
+}
