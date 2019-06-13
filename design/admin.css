@@ -1,0 +1,153 @@
+@charset 'utf-8';
+
+#admin-page p {
+  padding: 0;
+  margin: 0;
+}
+
+#admin-page .task-view-container {
+  display: flex;
+  margin: 0 auto;
+  min-width: 600px;
+  padding: 10px;
+  background-color: #eee;
+}
+
+#admin-page .task-list,
+#admin-page .task-details {
+  padding: 10px;
+}
+
+#admin-page .task-list {
+  overflow-y: scroll;
+  height: 500px;
+  margin-right: 10px;
+}
+
+#admin-page .task-list {
+  flex: 0 0 200px;
+  background-color: #999;
+  color: white;
+}
+
+#admin-page .task-list figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+#admin-page .task-list img {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+#admin-page .task-details {
+  flex: 1 1 auto;
+  background-color: #fff;
+}
+
+#admin-page .task,
+#admin-page .location {
+  display: flex;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #aaa;
+}
+
+#admin-page .task-image,
+#admin-page .task-text,
+#admin-page .map,
+#admin-page .location-text,
+#admin-page .comments {
+  padding: 10px;
+}
+
+#admin-page .task-image,
+#admin-page .task-text {
+  flex: 1 1;
+  padding: 10px;
+}
+
+#admin-page .title {
+  margin: 10px 0;
+}
+
+#admin-page .content {
+  padding: 10px;
+}
+
+#admin-page .task-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  min-width: 300px;
+}
+
+#admin-page .task-image figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 5px;
+}
+
+#admin-page .task-image img {
+  max-width: 100%;
+}
+
+#admin-page .map,
+#admin-page .location-text {
+  flex: 1 1;
+}
+
+#admin-page .map {
+  height: 300px;
+  max-width: 400px;
+  min-width: 300px;
+}
+
+/* comment input field */
+
+#admin-page .input-field form {
+  display: flex;
+}
+
+#admin-page .input-field button {
+  width: 80px;
+  height: 30px;
+  margin-top: auto;
+}
+
+#admin-page .input-field textarea {
+  padding: 10px;
+  width: 300px;
+  height: 100px;
+}
+
+/* 解決ボタン */
+#admin-page .resolution-checkbox label {
+  display: inline-block;
+  color: #555;
+  padding: 10px;
+  border: 3px solid #999;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+ #admin-page .resolution-checkbox label:hover {
+   background-color: rgba(200, 200, 200, 0.1);
+}
+
+
+/* 768px以下 */
+@media only screen and (max-width: 768px) {
+  #admin-page .task,
+  #admin-page .location {
+    flex-flow: column;
+  }
+
+  #admin-page .map {
+    flex: 0 0 300px;
+  }
+}
